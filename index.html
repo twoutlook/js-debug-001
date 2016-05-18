@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS debug</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-1.11.3.js"></script>
+    </head>
+    <body>
+        <h1>JS debug</h1>
+        <h2>console.log</h2>
+        <h2>console.assert</h2>
+        <h2>console.table</h2>
+        <script>
+//            var arr=['aaa','bbb','ccc'];
+            var arr = ['aaa', 'bbb', 'ccc', 'ddd'];
+
+            console.log(arr);
+
+            console.assert(arr.length === 3, "arr length should be 3");
+            console.assert(arr.length !== 3, "arr length should NOT be 3");
+            function checkData() {
+                $.getJSON('data/data.json', function (data) {
+                    var items = [];
+                    var className = '';
+                    $.each(data, function (i) {
+                        className = (i === 2) ? 'highlight' : '';
+                        items.push('<li id="obj' + data[i].index + '" class="' + className + '">' + data[i].name + '</li>');
+                    });
+
+                    $('<ul/>', {
+                        'class': 'person-list',
+                        html: items.join('')
+                    }).appendTo('.list-container');
+                    //console.clear();
+                    //console.log('----------------- CODE ENDS --------------------');
+                    // console.clear();
+                    console.table(data, ['name', 'gender', 'email']);
+                    console.log(data);
+
+                });
+            }
+            checkData();
+
+        </script>
+    </body>
+</html>
